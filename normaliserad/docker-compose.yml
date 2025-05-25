@@ -1,0 +1,63 @@
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg17
+    container_name: timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "mydb"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./data_insertion:/docker-entrypoint-initdb.d
+    networks:
+      internal_net: {}
+    restart: unless-stopped
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    networks:
+      internal_net: {}
+      external_net: {}
+
+  mindsdb:
+    build: .
+    container_name: mindsdb
+    ports:
+      - "47337:47334"
+      - "55432:55432"
+    volumes:
+      - mindsdb_data:/var/lib/mindsdb
+    networks:
+      external_net: {}
+      internal_net: {}
+    depends_on:
+      - timescaledb
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: on-failure
+
+
+networks:
+  internal_net:
+    internal: true
+
+  external_net:
+    driver: bridge
+
+volumes:
+  timescaledb_data: {}
+  mindsdb_data: {}
+  pgadmin: {}

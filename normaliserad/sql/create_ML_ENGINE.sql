@@ -1,0 +1,2 @@
+CREATE ML_ENGINE langchain_engine
+FROM langchain;
