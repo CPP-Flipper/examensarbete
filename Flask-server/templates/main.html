@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple AI Chat</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/styling.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</head>
+<body>
+  <h1>AI Chat</h1>
+  <div id="chat"></div>
+  <div id="inputDiv">
+    <input type="text" id="input" placeholder="Type your question…">
+    <i onclick="send()">Send</i>
+  </div>
+</body>
+</html>

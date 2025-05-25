@@ -1,0 +1,16 @@
+body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; }
+#chat { border: 1px solid #ccc; padding: 1rem; height: 400px; overflow-y: scroll; }
+.user { text-align: right; }
+.ai { text-align: left }
+.thinking {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 0.9em;
+}
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
