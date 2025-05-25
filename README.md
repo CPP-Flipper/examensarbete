@@ -41,10 +41,18 @@ Följ dessa steg för att komma igång:
     - Skapa en ny serveranslutning i pgAdmin, alla uppgifter finns i `docker-compose.yml` filen
     - Klicka på "Save" för att spara anslutningen.
 
-6. **Kör tester**
+6a. **Kör tester (indexering)**
     - Tools > Query Tool
-    - Kör VACUUM ANALYZE på den databas du vill testa:
+    - Kör VACUUM ANALYZE på den tabell du vill testa:
       ```sql
       VACUUM ANALYZE tabell_namn;
       ```
-    - Kör sedan dina SQL-frågor eller tester i samma Query Tool.
+    - Kör sedan `Query1,2 eller 3`.
+  
+
+6b. **Kör tester (generativ AI)**
+    - Ladda hem Ollama
+    - Hämta `https://ollama.com/library/mistral` modellen
+    - Kör `ollama serve & `
+    - Starta Flask-server genom att köra `flaskServer.py`
+    - Navigera till `http://localhost:8001` 
